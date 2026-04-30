@@ -1382,7 +1382,7 @@
   }
 
   try {
-    if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+    if (localStorage.getItem('theme') !== 'dark') document.body.classList.add('light');
   } catch(e) {}
 
   // ── 모바일 사이드바 ─────────────────────────────────────
@@ -1438,4 +1438,4 @@
   showChapter(0);
 </script>
 </body>
-</html>
+</html> 
