@@ -24,6 +24,12 @@
     --img-dashed: #2a2a2a;
     --active-bg: #1a1a1a;
     --hover-bg: #1a1a1a;
+    --notice-app-bg: #0d1a2e;
+    --notice-app-border: #1a3a5c;
+    --notice-app-text: #7ab3d9;
+    --notice-web-bg: #0d2218;
+    --notice-web-border: #1a4030;
+    --notice-web-text: #5db87a;
   }
 
   body.light {
@@ -42,6 +48,12 @@
     --img-dashed: #cccccc;
     --active-bg: #dededc;
     --hover-bg: #e4e4e2;
+    --notice-app-bg: #e8f2fb;
+    --notice-app-border: #b0cfe8;
+    --notice-app-text: #1e5c8a;
+    --notice-web-bg: #e6f5ec;
+    --notice-web-border: #a0d4b4;
+    --notice-web-text: #1a6e3a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -317,6 +329,30 @@
     padding: 6px 14px;
     border-radius: 4px;
     margin-bottom: 20px;
+  }
+
+  .slide-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .slide-notice.notice-app {
+    background: var(--notice-app-bg);
+    border: 1px solid var(--notice-app-border);
+    color: var(--notice-app-text);
+  }
+  .slide-notice.notice-web {
+    background: var(--notice-web-bg);
+    border: 1px solid var(--notice-web-border);
+    color: var(--notice-web-text);
+  }
+  .slide-notice svg {
+    flex-shrink: 0;
   }
 
   /* IMAGE AREA */
@@ -941,6 +977,7 @@
     <div class="subchapter-list" id="subchapter-list-10">
       <div class="subchapter-item" id="sub-10-0" onclick="showSubChapter(10, 0)">01. 완료 처리 방법</div>
       <div class="subchapter-item" id="sub-10-5" onclick="showSubChapter(10, 5)">02. 작업중으로 복귀하기</div>
+      <div class="subchapter-item" id="sub-10-11" onclick="showSubChapter(10, 11)">03. 담당자 계정 추가하기</div>
     </div>
   </aside>
 
@@ -955,6 +992,7 @@
       <div class="slide-chapter-title" id="slide-chapter-title">PC 세팅하기</div>
       <div class="slide-sub-chapter" id="slide-sub-chapter"></div>
       <div class="slide-cushion" id="slide-cushion" style="display:none">처음 한 번만 설정하면 됩니다. 순서대로 따라오시면 5분 안에 완료됩니다.</div>
+      <div class="slide-notice" id="slide-notice" style="display:none"></div>
 
       <!-- META + PROGRESS BAR -->
       <div class="slide-meta" id="slide-meta">
@@ -1145,11 +1183,15 @@
         { title: "'완료 처리' 버튼을 눌러주세요.", desc: "메뉴에서 '완료 처리'를 눌러주세요.", src: "images/ch11_s03.jpg" },
         { title: "확인을 눌러주세요.", desc: "완료 처리 사유는 입력하지 않아도 돼요.", src: "images/ch11_s04.jpg" },
         { title: "'작업완료' 탭에서 확인하세요.", desc: "완료 처리된 차량은 '작업완료' 탭에서 확인할 수 있습니다.", src: "images/ch11_s05.png" },
-        { title: "'작업완료' 탭에서 차량을 선택해 주세요.", desc: "작업완료 탭에서 작업중으로 되돌릴 차량을 선택해 주세요.", src: "images/ch11_s06.png", groupTitle: "작업중으로 복귀하기" },
+        { title: "'작업완료' 탭에서 차량을 선택해 주세요.", desc: "작업완료 탭에서 작업중으로 되돌릴 차량을 선택해 주세요.", src: "images/ch11_s06.png", groupTitle: "작업중으로 복귀하기", notice: 'app' },
         { title: "우측 상단 메뉴 버튼을 눌러주세요.", desc: "차량 상세화면에서 우측 상단의 '···' 버튼을 눌러주세요.", src: "images/ch11_s07.jpg" },
         { title: "'작업 목록 복귀' 버튼을 눌러주세요.", desc: "메뉴에서 '작업 목록 복귀'를 눌러주세요.", src: "images/ch11_s08.jpg" },
         { title: "확인을 눌러주세요.", desc: "확인을 누르면 작업중 상태로 되돌아갑니다.", src: "images/ch11_s09.jpg" },
-        { title: "'작업중' 탭에서 확인하세요.", desc: "복귀 처리된 차량은 '작업중' 탭에서 다시 확인할 수 있습니다.", src: "images/ch11_s10.png" }
+        { title: "'작업중' 탭에서 확인하세요.", desc: "복귀 처리된 차량은 '작업중' 탭에서 다시 확인할 수 있습니다.", src: "images/ch11_s10.png" },
+        { title: "우측 상단 공업사 이름을 클릭해 주세요.", desc: "웹 화면 우측 상단의 공업사 이름을 클릭하면 메뉴가 나타납니다. '계정 관리'를 선택해 주세요.", src: "images/계정관리_1.png", groupTitle: "담당자 계정 추가하기", notice: 'web' },
+        { title: "'팀원 추가하기' 버튼을 눌러주세요.", desc: "계정 관리 화면에서 팀원 목록의 '팀원 추가하기' 버튼을 눌러주세요.", src: "images/계정관리_2.png" },
+        { title: "아이디, 비밀번호, 전화번호를 입력해 주세요.", desc: "팀원 추가 창에서 아이디, 비밀번호, 전화번호를 입력한 후 '추가' 버튼을 눌러주세요. 생성한 아이디와 비밀번호를 직원에게 전달하면, 직원이 해당 정보로 로그인해 우리 업체 계정을 사용할 수 있습니다.", src: "images/계정관리_3.png" },
+        { title: "퇴사한 직원의 계정은 비활성화해 주세요.", desc: "직원이 퇴사한 경우, 팀원 목록에서 해당 직원 옆의 '비활성화' 버튼을 눌러주세요. 비활성화된 계정으로는 더 이상 접속할 수 없습니다.", src: "images/계정관리_4.png" }
       ]
     },
   ];
@@ -1235,6 +1277,20 @@
 
     document.getElementById('slide-title').textContent = step.title;
     document.getElementById('slide-desc').textContent = step.desc || '';
+
+    // 안내 문구 (앱/웹 전용)
+    const noticeEl = document.getElementById('slide-notice');
+    if (step.notice === 'app') {
+      noticeEl.className = 'slide-notice notice-app';
+      noticeEl.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 20c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5-4H7V4h10v13z"/></svg>※ 이 기능은 모바일 앱에서만 사용 가능합니다.';
+      noticeEl.style.display = 'flex';
+    } else if (step.notice === 'web') {
+      noticeEl.className = 'slide-notice notice-web';
+      noticeEl.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z"/></svg>※ 이 기능은 웹(PC)에서만 사용 가능합니다.';
+      noticeEl.style.display = 'flex';
+    } else {
+      noticeEl.style.display = 'none';
+    }
 
     // 팁
     const tipEl = document.getElementById('slide-tip');
@@ -1438,4 +1494,4 @@
   showChapter(0);
 </script>
 </body>
-</html> 
+</html>
