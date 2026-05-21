@@ -977,7 +977,7 @@
     <div class="subchapter-list" id="subchapter-list-10">
       <div class="subchapter-item" id="sub-10-0" onclick="showSubChapter(10, 0)">01. 완료 처리 방법</div>
       <div class="subchapter-item" id="sub-10-5" onclick="showSubChapter(10, 5)">02. 작업중으로 복귀하기</div>
-      <div class="subchapter-item" id="sub-10-11" onclick="showSubChapter(10, 11)">03. 담당자 계정 추가하기</div>
+      <div class="subchapter-item" id="sub-10-10" onclick="showSubChapter(10, 10)">03. 담당자 계정 추가하기</div>
     </div>
   </aside>
 
@@ -1278,13 +1278,17 @@
     document.getElementById('slide-title').textContent = step.title;
     document.getElementById('slide-desc').textContent = step.desc || '';
 
-    // 안내 문구 (앱/웹 전용)
+    // 안내 문구 (앱/웹 전용) - 서브챕터 전체 페이지에 표시
     const noticeEl = document.getElementById('slide-notice');
-    if (step.notice === 'app') {
+    let subNotice = null;
+    for (let i = currentStep; i >= 0; i--) {
+      if (steps[i] && steps[i].groupTitle) { subNotice = steps[i].notice || null; break; }
+    }
+    if (subNotice === 'app') {
       noticeEl.className = 'slide-notice notice-app';
       noticeEl.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 20c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5-4H7V4h10v13z"/></svg>※ 이 기능은 모바일 앱에서만 사용 가능합니다.';
       noticeEl.style.display = 'flex';
-    } else if (step.notice === 'web') {
+    } else if (subNotice === 'web') {
       noticeEl.className = 'slide-notice notice-web';
       noticeEl.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z"/></svg>※ 이 기능은 웹(PC)에서만 사용 가능합니다.';
       noticeEl.style.display = 'flex';
@@ -1488,10 +1492,4 @@
   }
 
   // 챕터 선택 시 모바일에서 사이드바 닫기
-  const origShowChapter = showChapter;
-
-  // ── 초기 렌더 ─────────────────────────────────────────
-  showChapter(0);
-</script>
-</body>
-</html>
+  const origShowChapter = s
